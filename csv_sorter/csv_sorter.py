@@ -20,7 +20,7 @@ class CSVSorter():
 
 
     def sort(self, sort_col, reverse=False):
-        self.data = sorted(self.data, key=lambda data: data[sort_col].lower(), reverse=reverse)
+        self.data = sorted(self.data, key=lambda data: str(data[sort_col]).lower(), reverse=reverse)
         self.sort_col = sort_col
 
         return self
