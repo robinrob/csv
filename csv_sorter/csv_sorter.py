@@ -26,12 +26,12 @@ class CSVSorter():
         return self
 
 
-    def print_all(self, sort_col=0, csv_out=False):
+    def print_all(self, sort_col=0, csv_out=False, color=True):
         for row in self.data:
-            self.print_row(row, sort_col=self.sort_col, csv_out=csv_out)
+            self.print_row(row, sort_col=self.sort_col, csv_out=csv_out, color=color)
 
 
-    def print_row(self, row, sort_col=None, csv_out=False):
+    def print_row(self, row, sort_col=None, csv_out=False, color=True):
         row_str = ""
 
         spacer = self.delimiter if csv_out else " "
@@ -40,7 +40,8 @@ class CSVSorter():
             row[col] = str(row[col]).replace(" ", "")
 
             if (sort_col >= 0) and (col is sort_col):
-                row[col] = colored(row[col], SORT_COL_COLOR)
+                if color:
+                    row[col] = colored(row[col], SORT_COL_COLOR)
 
             row_str += (row[col] + spacer if col < (len(row) - 1) else row[col])
 

@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python
 
 import sys
 import argparse
@@ -22,6 +22,9 @@ parser.add_argument("--reverse", "-r", action="store_true", default=False,
 parser.add_argument("--csv", action="store_true", default=None,
                     help="format output as CSV")
 
+parser.add_argument("--nocolor", action="store_true", default=False,
+                    help="disable color in output")
+
 args = parser.parse_args()
 
-CSVSorter(args.file, args.delimiter).sort(sort_col=args.column, reverse=args.reverse).print_all(csv_out=args.csv)
+CSVSorter(args.file, args.delimiter).sort(sort_col=args.column, reverse=args.reverse).print_all(csv_out=args.csv, color=(not args.nocolor))
